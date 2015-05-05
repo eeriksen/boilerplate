@@ -1,0 +1,22 @@
+{
+  "name": "bt-brann",
+  "version": "1.0.0",
+  "description": "Bergens Tidende - Brann kampanje",
+  "main": "web.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eeriksen/bt-brann.git"
+  },
+  "author": "Eivind Eriksen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eeriksen/bt-brann/issues"
+  },
+  "homepage": "https://github.com/eeriksen/bt-brann",
+  "dependencies": {
+    "grunt": "^0.4.5"
+  }
+}
