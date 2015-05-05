@@ -1,0 +1,85 @@
+/* ===================================================================
+   MIXINS
+   =================================================================== */
+
+// Gradient
+@mixin m-gradient($topColor, $bottomColor, $gradientStart: 0%, $gradientStop: 100%) {
+  background: $topColor;
+  background: -moz-linear-gradient(top,  $topColor $gradientStart, $bottomColor $gradientStop);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop($gradientStart,$topColor), color-stop($gradientStop,$bottomColor));
+  background: -webkit-linear-gradient(top,  $topColor $gradientStart,$bottomColor $gradientStop);
+  background: -o-linear-gradient(top,  $topColor $gradientStart,$bottomColor $gradientStop);
+  background: -ms-linear-gradient(top,  $topColor $gradientStart,$bottomColor $gradientStop);
+  background: linear-gradient(to bottom,  $topColor $gradientStart,$bottomColor $gradientStop);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$topColor', endColorstr='$bottomColor',GradientType=0 );
+}
+
+// Box shadow
+@mixin m-boxShadow($shadows...) {
+  -webkit-box-shadow: $shadows;
+  -moz-box-shadow:    $shadows;
+  box-shadow:         $shadows;
+}
+
+// Text Shaodw
+@mixin m-textShadow($shadows...) {
+  text-shadow: $shadows;
+}
+
+// Border radius
+@mixin m-borderRadius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+// Box sizing
+@mixin m-boxSizing($value) {
+  -webkit-box-sizing: $value;
+  -moz-box-sizing: $value;
+  box-sizing: $value;
+}
+
+// Opacity
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  // IE8 filter
+  $opacity-ie: ($opacity * 100);
+  filter: #{alpha(opacity=$opacity-ie)};
+}
+
+// Transition
+@mixin transition($transition...) {
+  -webkit-transition: $transition;
+  -o-transition: $transition;
+  transition: $transition;
+}
+@mixin transition-property($transition-property...) {
+  -webkit-transition-property: $transition-property;
+  transition-property: $transition-property;
+}
+@mixin transition-delay($transition-delay) {
+  -webkit-transition-delay: $transition-delay;
+  transition-delay: $transition-delay;
+}
+@mixin transition-duration($transition-duration...) {
+  -webkit-transition-duration: $transition-duration;
+  transition-duration: $transition-duration;
+}
+@mixin transition-timing-function($timing-function) {
+  -webkit-transition-timing-function: $timing-function;
+  transition-timing-function: $timing-function;
+}
+@mixin transition-transform($transition...) {
+  -webkit-transition: -webkit-transform $transition;
+  -moz-transition: -moz-transform $transition;
+  -o-transition: -o-transform $transition;
+  transition: transform $transition;
+}
+
+// Transformation
+@mixin transform($transformation) {
+  -ms-transform: rotate($transformation);
+  -webkit-transform: rotate($transformation);
+  transform: rotate($transformation);
+}

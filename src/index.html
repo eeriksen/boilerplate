@@ -1,12 +1,42 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Bergens Tidende - Brann kampanje</title>
+<!DOCTYPE HTML>
+<html ng-app="app">
+<head>
+    <title ng-bind="pageTitle"></title>
 
-    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <!-- Meta -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/" />
+
+    <!-- build:style css -->
+    <link rel="stylesheet" type="text/css" href="app/css/styles.min.css" />
+    <!-- /build -->
+
 </head>
-<body>
-    Hello
+<body ng-controller="ApplicationCtrl" bm-window-width-watcher>
+
+<!-- Main View -->
+<div data-ui-view></div>
+
+<!-- Curtain loader -->
+<div data-bm-curtain></div>
+
+<!-- Font -->
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
+
+<!-- Icon font -->
+<link href="https://fontastic.s3.amazonaws.com/TxR5YxntSjoNF3phfLGjFG/icons.css" rel="stylesheet">
+
+<!-- build:script js -->
+<script type="text/javascript" src="app/js/libs.js"></script>
+<script type="text/javascript" src="app/app.js"></script>
+<script type="text/javascript" src="app/js/views.js"></script>
+<script type="text/javascript" src="app/js/common.js"></script>
+<script type="text/javascript" src="app/js/model.js"></script>
+<script type="text/javascript" src="app/js/services.js"></script>
+<script type="text/javascript" src="app/js/sections.js"></script>
+<!-- /build -->
+
 </body>
 </html>

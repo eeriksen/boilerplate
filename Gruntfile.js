@@ -31,11 +31,9 @@ module.exports = function (grunt) {
                 css: [buildDirectory+'/app/css/**/*.css'],
                 language: [buildDirectory+'/app/language'],
                 images: [buildDirectory+'/app/images'],
-                fonts: [buildDirectory+'/app/fonts'],
-                misc: [buildDirectory+'/app/misc'],
                 views: [buildDirectory+'/app/js/views.js'],
                 common: [buildDirectory+'/app/js/common.js'],
-                sections: [buildDirectory+'/app/js/sections.js'],
+                modules: [buildDirectory+'/app/js/modules.js'],
                 model: [buildDirectory+'/app/js/model.js'],
                 services: [buildDirectory+'/app/js/services.js'],
                 libs: [buildDirectory+'/app/js/libs.js'],
@@ -86,10 +84,7 @@ module.exports = function (grunt) {
             bower_concat: {
                 libs: {
                     dest: buildDirectory+'/app/js/libs.js',
-                    bowerOptions: { relative: false },
-                    dependencies: {
-                        'angular-perfect-scrollbar-4.1.1fixed': 'perfect-scrollbar'
-                    }
+                    bowerOptions: { relative: false }
                 }
             },
 
@@ -203,39 +198,11 @@ module.exports = function (grunt) {
                         }
                     }
                 },
-                test: {
+                prod: {
                     src: deployDirectory+'/index.html',
                     dest: deployDirectory,
                     options: {
                         prefix: '<%= config.test.resUrl %>/',
-                        relative: false,
-                        scripts: {
-                            'js': {
-                                cwd: deployDirectory,
-                                files: [
-                                    'app/js/libs.js',
-                                    'app/app.js',
-                                    'app/js/views.js',
-                                    'app/js/common.js',
-                                    'app/js/sections.js',
-                                    'app/js/model.js',
-                                    'app/js/services.js'
-                                ]
-                            }
-                        },
-                        styles: {
-                            'css': {
-                                cwd: deployDirectory,
-                                files: ['app/css/*.css']
-                            }
-                        }
-                    }
-                },
-                stage: {
-                    src: deployDirectory+'/index.html',
-                    dest: deployDirectory,
-                    options: {
-                        prefix: '<%= config.stage.resUrl %>/',
                         relative: false,
                         scripts: {
                             'js': {
@@ -289,12 +256,23 @@ module.exports = function (grunt) {
                         }
                     ]
                 },
-                misc: {
+                language: {
                     files: [
                         {
                             expand: true,
                             cwd: sourceDirectory+'/assets',
-                            src: 'misc/*',
+                            src: 'language/*.json',
+                            dest: buildDirectory+'/app',
+                            filter: 'isFile'
+                        }
+                    ]
+                },
+                images: {
+                    files: [
+                        {
+                            expand: true,
+                            cwd: sourceDirectory+'/assets',
+                            src: 'images/*',
                             dest: buildDirectory+'/app',
                             filter: 'isFile'
                         }
@@ -347,11 +325,48 @@ module.exports = function (grunt) {
             },
 
 
+
             /*****************************************************
              Task:
              WATCH - Watch for changes on files or directories, and perform consequent tasks
              */
             watch: {
+                main: {
+                    files: [sourceDirectory+'/index.html', sourceDirectory+'/app/app.*.js'],
+                    tasks: ['main']
+                },
+                css: {
+                    files: sourceDirectory+'/assets/css/**/*.scss',
+                    tasks: ['css']
+                },
+                language: {
+                    files: sourceDirectory+'/assets/language/**/*.json',
+                    tasks:['language']
+                },
+                images: {
+                    files: sourceDirectory+'/assets/images/**/*',
+                    tasks:['images']
+                },
+                views: {
+                    files: [sourceDirectory+'/app/**/*.html'],
+                    tasks: ['views']
+                },
+                common: {
+                    files: [sourceDirectory+'/app/common/**/*.js'],
+                    tasks: ['common']
+                },
+                sections: {
+                    files: [sourceDirectory+'/app/sections/**/*.js'],
+                    tasks: ['sections']
+                },
+                model: {
+                    files: [sourceDirectory+'/app/model/**/*.js'],
+                    tasks: ['model']
+                },
+                services: {
+                    files: [sourceDirectory+'/app/services/**/*.js'],
+                    tasks: ['services']
+                },
                 libs: {
                     files: '/lib/*',
                     tasks: ['libs']
@@ -362,7 +377,8 @@ module.exports = function (grunt) {
         }
     );
 
-
+    // BUILD
+    grunt.registerTask('default', []);
 
 
 
