@@ -33,5 +33,4 @@ config
 lib
 build
 deploy
-config
 .sass-cache

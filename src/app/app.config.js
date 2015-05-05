@@ -1,7 +1,7 @@
 /**
  * APP - CONFIGURATION
  */
-angular.module('app').config(function($locationProvider, $httpProvider, $translateProvider, $urlMatcherFactoryProvider, ngClipProvider){
+angular.module('app').config(function($locationProvider, $httpProvider, $translateProvider, $urlMatcherFactoryProvider){
 
     //Use regular clean paths in route
     $locationProvider.html5Mode({

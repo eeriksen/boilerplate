@@ -1,2 +1,3 @@
-# bt-brann
-Bergens Tidende - Brann kampanje
+# Boilerplate
+
+Angular application

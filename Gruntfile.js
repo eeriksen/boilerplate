@@ -18,7 +18,6 @@ module.exports = function (grunt) {
             //Load properties
             config: grunt.file.readJSON('config/default.json'),
             pkg: grunt.file.readJSON('package.json'),
-            aws: grunt.file.readJSON('config/aws.json'),
 
 
             /*****************************************************
@@ -37,9 +36,7 @@ module.exports = function (grunt) {
                 model: [buildDirectory+'/app/js/model.js'],
                 services: [buildDirectory+'/app/js/services.js'],
                 libs: [buildDirectory+'/app/js/libs.js'],
-
                 deploy: [deployDirectory]
-
             },
 
 
@@ -117,9 +114,9 @@ module.exports = function (grunt) {
                     src: [sourceDirectory+'/app/services/**/*.js'],
                     dest: buildDirectory+'/app/js/services.js'
                 },
-                sections: {
-                    src: [sourceDirectory+'/app/sections/**/*.js'],
-                    dest: buildDirectory+'/app/js/sections.js'
+                modules: {
+                    src: [sourceDirectory+'/app/modules/**/*.js'],
+                    dest: buildDirectory+'/app/js/modules.js'
                 }
             },
 
@@ -170,11 +167,11 @@ module.exports = function (grunt) {
              HTMLBUILD - Append correct paths to resources before deploying
              */
             htmlbuild: {
-                dev: {
+                test: {
                     src: deployDirectory+'/index.html',
                     dest: deployDirectory,
                     options: {
-                        prefix: '<%= config.dev.resUrl %>/',
+                        prefix: '<%= config.test.resUrl %>/',
                         relative: false,
                         scripts: {
                             'js': {
@@ -184,7 +181,7 @@ module.exports = function (grunt) {
                                     'app/app.js',
                                     'app/js/views.js',
                                     'app/js/common.js',
-                                    'app/js/sections.js',
+                                    'app/js/modules.js',
                                     'app/js/model.js',
                                     'app/js/services.js'
                                 ]
@@ -212,7 +209,7 @@ module.exports = function (grunt) {
                                     'app/app.js',
                                     'app/js/views.js',
                                     'app/js/common.js',
-                                    'app/js/sections.js',
+                                    'app/js/modules.js',
                                     'app/js/model.js',
                                     'app/js/services.js'
                                 ]
@@ -355,8 +352,8 @@ module.exports = function (grunt) {
                     files: [sourceDirectory+'/app/common/**/*.js'],
                     tasks: ['common']
                 },
-                sections: {
-                    files: [sourceDirectory+'/app/sections/**/*.js'],
+                modules: {
+                    files: [sourceDirectory+'/app/modules/**/*.js'],
                     tasks: ['sections']
                 },
                 model: {
@@ -378,7 +375,18 @@ module.exports = function (grunt) {
     );
 
     // BUILD
-    grunt.registerTask('default', []);
+    grunt.registerTask('main', ['clean:main', 'copy:main', 'concat:app']);
+    grunt.registerTask('css', ['clean:css', 'sass']);
+    grunt.registerTask('language', ['clean:language', 'copy:language']);
+    grunt.registerTask('images', ['clean:images', 'copy:images']);
+    grunt.registerTask('views', ['clean:views', 'ngtemplates:views']);
+    grunt.registerTask('common', ['clean:common', 'concat:common']);
+    grunt.registerTask('modules', ['clean:modules', 'concat:modules']);
+    grunt.registerTask('model', ['clean:model', 'concat:model']);
+    grunt.registerTask('services', ['clean:services', 'concat:services']);
+    grunt.registerTask('libs', ['clean:libs', 'bower_concat']);
+
+    grunt.registerTask('default', ['clean:all', 'main', 'css', 'language', 'images', 'views', 'common', 'modules', 'model', 'services', 'libs']);
 
 
 
