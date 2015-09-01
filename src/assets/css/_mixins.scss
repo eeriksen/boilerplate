@@ -1,6 +1,9 @@
+@import "settings";
+
 /* ===================================================================
    MIXINS
    =================================================================== */
+
 
 // Gradient
 @mixin m-gradient($topColor, $bottomColor, $gradientStart: 0%, $gradientStop: 100%) {
@@ -40,46 +43,59 @@
   box-sizing: $value;
 }
 
+// Background size
+@mixin m-backgroundSize($value){
+  -webkit-background-size: $value;
+  -moz-background-size: $value;
+  -o-background-size: $value;
+  background-size: $value;
+}
+
 // Opacity
-@mixin opacity($opacity) {
+@mixin m-opacity($opacity) {
   opacity: $opacity;
-  // IE8 filter
   $opacity-ie: ($opacity * 100);
   filter: #{alpha(opacity=$opacity-ie)};
 }
 
 // Transition
-@mixin transition($transition...) {
+@mixin m-transition($transition...) {
   -webkit-transition: $transition;
   -o-transition: $transition;
   transition: $transition;
 }
-@mixin transition-property($transition-property...) {
-  -webkit-transition-property: $transition-property;
-  transition-property: $transition-property;
-}
-@mixin transition-delay($transition-delay) {
-  -webkit-transition-delay: $transition-delay;
-  transition-delay: $transition-delay;
-}
-@mixin transition-duration($transition-duration...) {
-  -webkit-transition-duration: $transition-duration;
-  transition-duration: $transition-duration;
-}
-@mixin transition-timing-function($timing-function) {
-  -webkit-transition-timing-function: $timing-function;
-  transition-timing-function: $timing-function;
-}
-@mixin transition-transform($transition...) {
-  -webkit-transition: -webkit-transform $transition;
-  -moz-transition: -moz-transform $transition;
-  -o-transition: -o-transform $transition;
-  transition: transform $transition;
+
+// Transform
+@mixin m-transform($transformation...) {
+  -webkit-transition: -webkit-transform $transformation;
+  -moz-transition: -moz-transform $transformation;
+  -o-transition: -o-transform $transformation;
+  transition: transform $transformation;
 }
 
-// Transformation
-@mixin transform($transformation) {
-  -ms-transform: rotate($transformation);
-  -webkit-transform: rotate($transformation);
-  transform: rotate($transformation);
+// White space wrap
+@mixin m-whiteSpaceWrap(){
+  white-space: pre-wrap;       /* css-3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+// Calc
+@mixin m-calc($property, $expression) {
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
+// Font face
+@mixin m-fontFace($style-name, $file, $weight) {
+  $filepath: "/fonts/" + $file;
+  @font-face {
+    font-family: "#{$style-name}";
+    src: url($filepath + ".eot");
+    src: url($filepath + ".eot?#iefix") format('embedded-opentype'), url($filepath + ".woff") format('woff'), url($filepath + ".ttf")  format('truetype'), url($filepath + ".svg#" + $style-name + "") format('svg');
+    font-weight: $weight;
+  }
 }

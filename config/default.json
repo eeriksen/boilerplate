@@ -1,0 +1,8 @@
+{
+  "test": {
+    "resUrl": ""
+  },
+  "prod": {
+    "resUrl": ""
+  }
+}

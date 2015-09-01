@@ -3,12 +3,12 @@
  */
 
 angular.module('app').factory("Start", function() {
-    function Start(startData){
+    function Start(data){
 
         this.id = null;
 
-        if(startData){
-            this.setData(startData);
+        if(data){
+            this.setData(data);
         }
     }
 
@@ -18,10 +18,10 @@ angular.module('app').factory("Start", function() {
          * Constructor
          * @param itemData
          */
-        setData: function(startData){
+        setData: function(data){
 
             var self = this;
-            self.id = startData._id;
+            self.id = data._id;
 
         }
     };

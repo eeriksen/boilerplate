@@ -354,7 +354,7 @@ module.exports = function (grunt) {
                 },
                 modules: {
                     files: [sourceDirectory+'/app/modules/**/*.js'],
-                    tasks: ['sections']
+                    tasks: ['modules']
                 },
                 model: {
                     files: [sourceDirectory+'/app/model/**/*.js'],

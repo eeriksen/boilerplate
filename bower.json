@@ -1,11 +1,11 @@
 {
-  "name": "bt-brann",
+  "name": "boilerplate",
   "version": "1.0.0",
-  "homepage": "https://github.com/eeriksen/bt-brann",
+  "homepage": "https://github.com/eeriksen/boilerplate",
   "authors": [
     "eeriksen <mail@eivinderiksen.com>"
   ],
-  "description": "Bergens Tidende - Brann kampanje",
+  "description": "Boilerplate - Angular application",
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -15,11 +15,11 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.3.15",
-    "angular-sanitize": "~1.3.15",
-    "angular-resource": "~1.3.15",
-    "angular-translate": "~2.7.0",
-    "angular-translate-loader-static-files": "~2.7.0",
-    "angular-ui-router": "~0.2.14"
+    "angular": "~1.4.5",
+    "angular-sanitize": "~1.4.5",
+    "angular-resource": "~1.4.5",
+    "angular-translate": "~2.7.2",
+    "angular-translate-loader-static-files": "~2.7.2",
+    "angular-ui-router": "~0.2.15"
   }
 }

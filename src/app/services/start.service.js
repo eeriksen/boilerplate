@@ -2,7 +2,7 @@
  * Service
  */
 
-angular.module('app').factory('startService', function ($rootScope, $http, $q) {
+angular.module('app').factory('startService', function ($rootScope, $http, $q, Start) {
     var startService = {
 
         _pool: {},
@@ -13,7 +13,7 @@ angular.module('app').factory('startService', function ($rootScope, $http, $q) {
             if (instance) {
                 instance.setData(instanceData);
             } else {
-                instance = new Project(instanceData);
+                instance = new Start(instanceData);
                 this._pool[instanceId] = instance;
             }
 
